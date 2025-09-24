@@ -64,22 +64,18 @@ int calcula_index (int index){
 }
 
 void media_movel(int n, int index){
-    static float buffer[5];
-    static int contador = 0;
-    static float soma = 0;
+    static float buffer[5] = {0, 0 ,0 ,0 ,0};
+    static int soma = 0;
 
     index = calcula_index(index);
 
-    if (contador >=5){
-        printf("media movel %d :%f\n ", (contador-5), (soma/5));
-        soma = soma - buffer[index];
-        buffer[index] = n;
 
+    if (soma!=0){
+        printf("%d\n", (soma/5));
     }
-    else{
-        buffer[index] = n;
-    }
-    contador ++;
+    soma = soma - buffer[index];
+    buffer[index] = n;
+    
     soma+=buffer[index];
 }
 

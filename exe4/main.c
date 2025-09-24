@@ -44,6 +44,8 @@
  int main() {
     stdio_init_all();
     adc_init();
+    adc_gpio_init(28);
+
 
     uint16_t result;
     float voltagem;
@@ -59,7 +61,6 @@
 
     gpio_init(PIN_ADC);
     gpio_set_dir(PIN_ADC, GPIO_IN);
-    gpio_pull_up(PIN_ADC); // nivel high quando nao presisonado
     // o up e down sao referentes aos niveis de quando a tensao esta HIGH
 
 
