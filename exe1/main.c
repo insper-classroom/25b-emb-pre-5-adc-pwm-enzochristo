@@ -12,19 +12,28 @@
 void adc_task(void *p) {
     adc_init();
     adc_gpio_init(27);
+    adc_gpio_init(26);
 
     // 12-bit conversion, assume max value == ADC_VREF == 3.3 V
-    const float conversion_factor = 3.3f / (1 << 12);
+    const float conversion_factor = 3.3f / (1 << 12); // isso aqui esta calculando o numero de degraus, ou seja, a resolucao desse sinal.
 
-    uint16_t result;
     while (1) {
+        uint16_t result;
         adc_select_input(1); // Select ADC input 1 (GPIO27)
         result = adc_read();
         printf("voltage 1: %f V\n", result * conversion_factor);
 
         // CÓDIGO AQUI
+        adc_select_input(0); // seleciona o input do componente fisico, ou seja, eh aqui que olhamos o mux.
+        result = adc_read();
+        printf("voltage 2: %f V\n", result * conversion_factor);
 
-
+        // A ideia de usarmos esse conversor eh que: 
+        // Quando estamos usando o adc ele vai ver a relacao entre passos (degraus no grafico)
+        // e tensao(v), podendo ser tanto passo(bit)/tensao(v) ou tensao/bit(usamos essa).
+        // Depois disso, precisamos converter o numero de passos que foi dado para volts.
+        // Fazemos isso pela proporcao que calculamos.
+        // O adc vai nos retornar o numero de passos. Precisamos calcular a voltagem a partir disso.
 
         vTaskDelay(pdMS_TO_TICKS(200));
     }
