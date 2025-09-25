@@ -60,7 +60,7 @@
 
 
     uint16_t result;
-    float voltagem;
+    float voltagem = 0;
     int ja_comecou_timer0 = 0;
     int ja_comecou_timer1 = 0;
     
@@ -73,7 +73,6 @@
     // gpio_set_dir(PIN_ADC, GPIO_IN);
     // // o up e down sao referentes aos niveis de quando a tensao esta HIGH
     int led_status = 0;
-    int voltagem = 0;
 
     while (1) {
 
