@@ -73,6 +73,7 @@
     // gpio_set_dir(PIN_ADC, GPIO_IN);
     // // o up e down sao referentes aos niveis de quando a tensao esta HIGH
     int led_status = 0;
+    int voltagem = 0;
 
     while (1) {
 
