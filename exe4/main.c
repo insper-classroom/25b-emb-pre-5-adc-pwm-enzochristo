@@ -63,6 +63,7 @@
     float voltagem;
     int ja_comecou_timer0 = 0;
     int ja_comecou_timer1 = 0;
+    
 
     gpio_init(PIN_LED_B);
     gpio_put(PIN_LED_B,0);
